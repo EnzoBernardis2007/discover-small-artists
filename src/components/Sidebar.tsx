@@ -1,17 +1,28 @@
+import { useState } from "react";
+import { Button } from "./Button";
+
 export function Sidebar() {
+    const [followers, setFollowers] = useState<number>(0);
+
     return (
         <aside 
-            className="fixed left-0 top-1/4 h-auto w-10 hover:w-64 bg-gray-900 text-white p-4 overflow-hidden transition-all duration-300 rounded-r-lg shadow-lg"
+            className="fixed left-0 top-1/4 h-1/2 w-10 group hover:w-72 bg-gray-900 text-white p-4 transition-all duration-300 rounded-r-lg shadow-lg overflow-hidden"
         >
-            <div className="mt-2 space-y-2 ml-7">
+            <div className="mt-2 space-y-2 ml-7 group-hover:opacity-100 opacity-0 transition-opacity duration-300 delay-300">
                 <h2 className="text-lg font-bold">Filter</h2>
                 <div>
-                    <label className="block mb-1">Followers</label>
+                    <label className="block mb-1">Followers: {followers}</label>
                     <input 
-                        type="number" 
-                        className="bg-gray-800 p-2 rounded-sm outline-none focus:ring-2 focus:ring-green-600 w-full no-arrows"
+                        type="range" 
+                        min="0"
+                        max="100"
+                        value={followers}
+                        onChange={(event) => setFollowers(parseInt(event.target.value, 10))}
+                        className="w-full cursor-pointer"
                     />
                 </div>
+                
+                <Button content="Apply"/>
             </div>
         </aside>
     );

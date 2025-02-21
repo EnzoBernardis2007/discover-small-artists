@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import logo from '../assets/react.svg'
 import { Sidebar } from '../components/Sidebar';
+import { Button } from '../components/Button';
 
 export function Home() {
     const [isHovered, setIsHovered] = useState(false);
@@ -40,9 +41,8 @@ export function Home() {
                             ))
                         }
                     </div>
-                    <button className="bg-green-600 rounded-lg text-yellow-50 w-24 h-10 hover:bg-green-700 transition">
-                        Shuffle
-                    </button>
+
+                    <Button content="Shuffle" />
                 </main>
             </div>
         

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Sidebar } from '../components/Sidebar'
 import { Button } from '../components/Button'
 import { getContext } from '../context/ContextProvider'
+import defaultProfilePhoto from '../assets/default-user-photo.jpg'
 
 interface Track {
     name: string;
@@ -53,7 +54,7 @@ export function Home() {
     return (
         <>
             <Sidebar />
-            <div className="bg-black h-full flex justify-center items-center p-14">
+            <div className="bg-black min-h-screen h-full flex justify-center items-center p-14">
                 <main className="bg-gray-950 rounded-3xl p-5 w-96 m-auto flex flex-col items-center gap-4 border-4 border-gray-900">
                     {/* Name of the artist */}
                     <h1 className="text-white text-3xl">{data && data.length > 0 ? data[index].name : "Loading..."}</h1>
@@ -64,7 +65,11 @@ export function Home() {
                         onMouseLeave={() => setIsHovered(false)}
                     >
                         {/* Photo */}
-                        <img src={data && data.length > 0 ? data[index].imageUrl : undefined} className="size-52 rounded-xl" alt="Artist" />
+                        <img 
+                            src={data && data.length > 0 && data[index].imageUrl !== "No image" ? data[index].imageUrl : defaultProfilePhoto} 
+                            className="size-52 rounded-xl" 
+                            alt="Artist" 
+                        />
 
                         {/* Info block */}
                         <div 

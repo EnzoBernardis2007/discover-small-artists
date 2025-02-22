@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "./Button";
 
 export function Sidebar() {
-    const [followers, setFollowers] = useState<number>(0);
+    const [followers, setFollowers] = useState<number>(50);
 
     return (
         <aside 
@@ -21,7 +21,7 @@ export function Sidebar() {
                         className="w-full cursor-pointer"
                     />
                 </div>
-                
+
                 <Button content="Apply"/>
             </div>
         </aside>

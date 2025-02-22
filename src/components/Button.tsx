@@ -5,6 +5,7 @@ interface ButtonProps {
 }
 
 export function Button({ type, content, doThis }: ButtonProps) {
+
     switch (type) {
         case 'common':
             return(

@@ -4,17 +4,21 @@ import { Button } from '../components/Button'
 import { getContext } from '../context/ContextProvider'
 import defaultProfilePhoto from '../assets/default-user-photo.jpg'
 
+interface Filter {
+    followersLimit: number
+}
+
 interface Track {
-    name: string;
-    id: string;
-    imageUrl: string;
+    name: string
+    id: string
+    imageUrl: string
 }
   
 interface Artist {
-    name: string;
-    followers: number;
-    imageUrl: string;
-    topTracks: Track[];
+    name: string
+    followers: number
+    imageUrl: string
+    topTracks: Track[]
 }
   
 export function Home() {
@@ -25,11 +29,28 @@ export function Home() {
     const [data, setData] = useState<Artist[]>()
     const [index, setIndex] = useState<number>(0)
 
+    const [filter, setFilter] = useState<Filter>({
+        followersLimit: 100000
+    })
+
+    const handleFilter = (value: number) => {
+        setFilter({
+            followersLimit: value
+        })
+
+        getRandomArtist()
+    }
+
     const getRandomArtist = async () => {
         setLoader(true)
         setFade(true)
 
-        const response: Response = await fetch(`${endpoint}/random-small-artists`, {
+        const url = new URL(`${endpoint}/random-small-artists`)
+        const params = new URLSearchParams()
+
+        if (filter.followersLimit) params.append('followersLimit', filter.followersLimit.toString())
+
+        const response: Response = await fetch(`${url}?${params.toString()}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'
@@ -39,7 +60,7 @@ export function Home() {
         if(response.ok) {
             const getData = await response.json()
             setData(getData)
-            console.log("fetch")
+            console.log("fetch: " + filter.followersLimit)
 
             setTimeout(() => setFade(false), 200)
             setTimeout(() => setLoader(false), 500) 
@@ -61,9 +82,9 @@ export function Home() {
     
     return (
         <>
-            <Sidebar />
+            <Sidebar handleFilter={handleFilter}/>
             <div className="bg-black min-h-screen h-full flex justify-center items-center p-14">
-                {/* Loader com animação de fade */}
+                {/* Loader */}
                 { loader && 
                     <div className={`h-screen bg-black flex-col gap-4 w-full flex items-center justify-center fixed z-20 transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
                         <div className="w-28 h-28 border-8 text-green-400 text-4xl animate-spin border-gray-200 flex items-center justify-center border-t-green-500 rounded-full" />

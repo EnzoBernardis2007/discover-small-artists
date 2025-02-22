@@ -1,8 +1,14 @@
-import { useState } from "react";
-import { Button } from "./Button";
+import { useState } from "react"
+import { Button } from "./Button"
 
-export function Sidebar() {
-    const [followers, setFollowers] = useState<number>(50);
+interface SidebarProps {
+    handleFilter: (value: number) => void
+}
+
+export function Sidebar({ handleFilter }: SidebarProps) {
+    const [followers, setFollowers] = useState<number>(50)
+
+    
 
     return (
         <aside 
@@ -15,15 +21,15 @@ export function Sidebar() {
                     <input 
                         type="range" 
                         min="0"
-                        max="100"
+                        max="10000"
                         value={followers}
                         onChange={(event) => setFollowers(parseInt(event.target.value, 10))}
                         className="w-full cursor-pointer"
                     />
                 </div>
 
-                <Button type="common" content="Apply"/>
+                <Button type="common" content="Apply" doThis={() => handleFilter(followers)} />
             </div>
         </aside>
-    );
+    )
 }

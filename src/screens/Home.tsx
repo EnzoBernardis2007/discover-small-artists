@@ -91,20 +91,20 @@ export function Home() {
                     </div>
                 }
 
-                <main className="bg-opacity-10 bg-gray-500 rounded-3xl gap-6 p-10 w-[650px] h-auto m-auto flex justify-center items-center">
+                <main className="bg-night rounded-3xl w-[700px] h-auto m-auto p-10 gap-10 justify-center items-center grid grid-cols-2">
                     <div className="flex flex-col items-center">
                         {/* Name of the artist */}
                         <h1 className="text-white text-3xl font-medium text-center">{data && data.length > 0 ? data[index].name : "Loading..."}</h1>
 
                         <div 
-                            className="relative mb-10 mt-5"
+                            className="relative mt-4 mb-6"
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                         >
                             {/* Photo */}
                             <img 
                                 src={data && data.length > 0 && data[index].imageUrl !== "No image" ? data[index].imageUrl : defaultProfilePhoto} 
-                                className="w-52 rounded-xl" 
+                                className="rounded-xl" 
                                 alt="Artist" 
                             />
 
@@ -122,7 +122,7 @@ export function Home() {
                     </div>
 
                     {/* Top 5 musics of the artist */}
-                    <div>
+                    <div className="flex flex-col justify-center items-center">
                         {
                             data && data.length > 0 && data[index].topTracks.map((track, trackIndex) => (
                                 <iframe key={track.id}

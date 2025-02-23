@@ -16,8 +16,8 @@ export function Button({ type, content, doThis }: ButtonProps) {
             )
         case 'special':
             return (
-                <button 
-                    className="bg-green-600 rounded-full text-slate-50 w-28 h-12 active:bg-green-700 hover:ring-2 hover:ring-green-500 hover:bg-green-500 transition font-medium"
+                <button
+                    className="cursor-pointer p-6 bg-green-500 min-w-32 max-w-full h-12 rounded-full text-white font-medium flex justify-center items-center hover:bg-green-600 hover:ring-2 hover:ring-green-700 hover:scale-105 active:bg-green-700 active:scale-95 transition-all duration-300"
                     onClick={doThis}
                 >{content}</button>
             )

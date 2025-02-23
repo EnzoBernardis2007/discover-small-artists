@@ -12,7 +12,7 @@ export function Sidebar({ handleFilter }: SidebarProps) {
 
     return (
         <aside 
-            className="fixed left-0 top-1/4 h-1/2 w-10 group hover:w-72 bg-opacity-10 bg-gray-500 text-white p-4 transition-all duration-300 rounded-r-lg shadow-lg overflow-hidden"
+            className="fixed left-0 top-1/4 h-1/2 w-10 group hover:w-72 bg-night text-white p-4 transition-all duration-300 rounded-r-lg shadow-lg overflow-hidden"
         >
             <div className="mt-2 space-y-2 ml-7 group-hover:opacity-100 opacity-0 transition-opacity duration-300 delay-300">
                 <h2 className="text-lg font-bold">Filter</h2>

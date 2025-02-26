@@ -34,12 +34,12 @@ export function Home() {
     })
 
     const handleFilter = (value: number) => {
-        setFilter({
-            followersLimit: value
-        })
-
-        getRandomArtist()
+        setFilter(prev => ({ ...prev, followersLimit: value }))
     }
+
+    useEffect(() => {
+        getRandomArtist()
+    }, [filter.followersLimit])
 
     const getRandomArtist = async () => {
         setLoader(true)
@@ -66,10 +66,6 @@ export function Home() {
             setTimeout(() => setLoader(false), 500) 
         }
     }
-
-    useEffect(() => {
-        getRandomArtist()
-    }, [])
 
     const shuffle = () => {
         if(index == (data && data.length > 0 ? data.length : 2) - 1) {

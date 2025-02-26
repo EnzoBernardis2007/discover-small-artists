@@ -6,9 +6,7 @@ interface SidebarProps {
 }
 
 export function Sidebar({ handleFilter }: SidebarProps) {
-    const [followers, setFollowers] = useState<number>(50)
-
-    
+    const [followers, setFollowers] = useState<number>(0)
 
     return (
         <aside 
